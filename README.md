@@ -50,8 +50,6 @@ npm run build
 
 ## Certifications
 
-- Azure AI Engineer Associate
-- Power BI Data Analyst Associate (Microsoft/NEMISA)
 - Full Stack Development (FNB App Academy)
 - Generative AI (Google Cloud)
 - Introduction to AI (IBM)
