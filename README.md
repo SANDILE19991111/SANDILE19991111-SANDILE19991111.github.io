@@ -1,65 +1,250 @@
-# Bongimusa Sandile Khoza — Portfolio
+# Bongimusa Sandile Khoza — Software Engineering & AI Portfolio
 
-Personal portfolio site showcasing my work in software development, AI/ML, data engineering, and cybersecurity.
+Personal portfolio showcasing projects in **Software Engineering, Artificial Intelligence, Machine Learning, Backend Development, Data Analytics, and Cloud Technologies**.
 
-🔗 **Live site:** [https://sandile.khozabongimusa4.workers.dev](https://sandile.khozabongimusa4.workers.dev)
+🌐 **Live Portfolio:** https://sandile.khozabongimusa4.workers.dev
 
-## About
+---
 
-I build things that make decisions not just interfaces that display data, but systems that reason over it. SAPS iLodge takes a stream of citizen complaints and routes them intelligently using LLaMA 3.3 70B; SafeRide verifies a rider's identity in real time using DeepFace and Gemini rather than trusting a static photo on file. That's the thread running through my work: I'm less interested in AI as a buzzword and more interested in the specific moment where a model's output has to become someone's actual decision approve the ride, escalate the ticket, flag the anomaly.
-I came to this from a place where computers were rare growing up in Bushbuckridge, Mpumalanga  which maybe explains why I care more about whether a system actually works for the person using it than whether it looks impressive in a demo. My BSc in Computer Science and Mathematics from North-West University gave me the theory; building SAPS iLodge, SafeRide, and Email Drafter end-to-end architecture, data layer, model integration, deployment taught me where theory breaks down in practice.
-Right now that shows up as full-stack development, AI/ML integration, and data engineering but the constant is the same: take a messy real-world problem, find the structure in it, and ship something that holds up.
-## Tech Stack
+## About Me
 
-- **Framework:** [TanStack Start](https://tanstack.com/start) (React + SSR)
-- **Build tool:** Vite
-- **Styling:** Tailwind CSS
-- **UI components:** Radix UI / shadcn-style components
-- **State/data:** TanStack Query, TanStack Router
-- **Hosting:** Cloudflare Workers (via Nitro's `cloudflare-module` preset)
-- **Built with:** [Lovable](https://lovable.dev)
+I'm a **BSc Computer Science and Mathematics graduate** passionate about building intelligent software that solves real-world problems.
 
-## Deployment
+My work focuses on combining **software engineering** with **artificial intelligence** to create applications that don't just display information—they analyze data, automate decisions, and improve user experiences. From biometric identity verification using computer vision to AI-powered ticket routing, sentiment analysis, and secure backend systems, I enjoy designing solutions that bridge data, automation, and practical business needs.
 
-This project is deployed automatically via Cloudflare's Git integration — every push to `main` triggers a new build and deployment.
+Growing up in Bushbuckridge, Mpumalanga, where access to technology was limited, inspired my curiosity about computing and reinforced my belief that technology should create meaningful impact. Today, I enjoy taking ideas from concept to deployment by building scalable, user-focused applications using modern development tools and AI technologies.
 
-- **Build command:** `npm run build`
-- **Deploy command:** `npx wrangler deploy`
-- **Output:** `.output/public` (client assets) + `.output/server` (SSR Worker)
+---
 
-### Local development
+## Technical Skills
+
+### Programming Languages
+
+* Python
+* JavaScript
+* Java
+* SQL
+* HTML5
+* CSS3
+* C++
+
+### Backend Development
+
+* Node.js
+* Express.js
+* REST APIs
+* JWT Authentication
+* MongoDB
+* PostgreSQL
+
+### Artificial Intelligence & Machine Learning
+
+* DeepFace
+* Scikit-learn
+* Computer Vision
+* Natural Language Processing
+* TextBlob
+* KMeans Clustering
+* Prompt Engineering
+
+### Large Language Models
+
+* Llama 3.3 70B (Groq)
+* Gemini 2.5 Flash
+* Claude AI
+
+### Data Analytics
+
+* Pandas
+* NumPy
+* Plotly
+* Matplotlib
+* Power BI
+* Microsoft Excel
+
+### Cloud & DevOps
+
+* Git
+* GitHub
+* Render
+* Streamlit Cloud
+* Cloudflare Workers
+* GitHub Pages
+
+### Networking & Infrastructure
+
+* Cisco Packet Tracer
+* VLANs
+* DHCP
+* IPv4 / IPv6
+* Static NAT
+* TCP/IP
+
+---
+
+## Featured Projects
+
+### 🛡️ SafeRide
+
+AI-powered ride safety platform using biometric facial verification.
+
+**Technologies:** Python, Streamlit, DeepFace, Gemini 2.5 Flash
+
+* Live facial recognition
+* AI safety briefings
+* Ride history dashboard
+* Dynamic pricing
+* Emergency SOS
+
+---
+
+### 🚔 SAPS iLodge
+
+AI-powered complaint and ticket management platform.
+
+**Technologies:** Node.js, Express.js, Groq API, Llama 3.3 70B
+
+* AI ticket routing
+* Workflow automation
+* Analytics dashboard
+* Compliance monitoring
+* Executive reporting
+
+---
+
+### 💼 DeskFlow
+
+Secure internal IT ticket management REST API.
+
+**Technologies:** Node.js, Express.js, MongoDB, JWT
+
+* Authentication
+* Role-based access control
+* Swagger documentation
+* REST API
+* MongoDB
+
+---
+
+### 📧 ContentBot
+
+AI-powered email drafting assistant.
+
+**Technologies:** Node.js, Express.js, Groq API
+
+* AI email generation
+* Prompt engineering
+* Multiple writing styles
+* Copy-to-clipboard
+
+---
+
+### 🧠 SentimentIQ
+
+Interactive AI sentiment analysis dashboard.
+
+**Technologies:** Python, Streamlit, TextBlob, Plotly
+
+* Sentiment classification
+* Word clouds
+* Interactive dashboards
+* AI insights
+
+---
+
+### 🌊 OceanIQ *(Team Project)*
+
+AI chatbot promoting Blue Economy awareness.
+
+**Role:** Team Lead, Frontend Development, Deployment
+
+---
+
+## Certifications
+
+* Full Stack Development — FNB App Academy
+* Google AI Essentials
+* IBM Python for Data Science, AI & Development
+* IBM Introduction to Artificial Intelligence
+* IBM Generative AI: Prompt Engineering Basics
+* Google Cloud Introduction to Generative AI
+* AI For Everyone — DeepLearning.AI
+
+---
+
+## Portfolio Technology
+
+This portfolio is built using modern React technologies.
+
+* **Framework:** TanStack Start (React + SSR)
+* **Routing:** TanStack Router
+* **Data Fetching:** TanStack Query
+* **Styling:** Tailwind CSS
+* **UI Components:** Radix UI
+* **Bundler:** Vite
+* **Hosting:** Cloudflare Workers
+
+---
+
+## Local Development
+
+Clone the repository.
 
 ```bash
+git clone <repository-url>
+
+cd portfolio
+
 npm install
+```
+
+Run the development server.
+
+```bash
 npm run dev
 ```
 
-Runs the dev server at `http://localhost:8080`.
+Open:
 
-### Local production build
+```text
+http://localhost:8080
+```
+
+Create a production build.
 
 ```bash
 npm run build
 ```
 
-## Featured Projects
+---
 
-- **SAPS iLodge** — AI-powered police ticket/complaint management platform (Node.js, Express, PostgreSQL, LLaMA 3.3 70B via Groq)
-- **SafeRide** — Biometric ride safety platform (Python, DeepFace, Gemini 2.5 Flash)
-- **Email Drafter** — AI email drafting tool (Node.js, Groq API)
-- **OceanIQ** — AI chatbot (Team Lead project)
+## Deployment
 
-## Certifications
+The portfolio is deployed on **Cloudflare Workers** using automated Git integration.
 
-- Full Stack Development (FNB App Academy)
-- Generative AI (Google Cloud)
-- Introduction to AI (IBM)
+Every push to the **main** branch triggers a new production deployment.
 
-## Contact
+Build command:
 
-- **LinkedIn:** [linkedin.com/in/bongimusa-khoza-7661aa396](https://linkedin.com/in/bongimusa-khoza-7661aa396)
-- **GitHub:** [github.com/SANDILE19991111](https://github.com/SANDILE19991111)
+```bash
+npm run build
+```
+
+Deploy command:
+
+```bash
+npx wrangler deploy
+```
 
 ---
 
-*Note: This repository's source is deployed via Cloudflare Workers, not GitHub Pages, due to the project's server-side rendering (SSR) requirements.*
+## Connect With Me
+
+* 🌐 Portfolio: https://sandile.khozabongimusa4.workers.dev
+* 💼 LinkedIn: https://linkedin.com/in/bongimusa-khoza-7661aa396
+* 💻 GitHub: https://github.com/SANDILE19991111
+* 📧 Email: [bongimusa.khoza@outlook.com](mailto:bongimusa.khoza@outlook.com)
+
+---
+
+> *"I enjoy building software that combines intelligent decision-making with practical engineering to solve real-world problems."*
