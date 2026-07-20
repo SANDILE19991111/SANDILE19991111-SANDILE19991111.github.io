@@ -1,4 +1,4 @@
-# Bongimusa Sandile Khoza — Software Engineering & AI Portfolio
+# Bongimusa Sandile Khoza Software Engineering & AI Portfolio
 
 Personal portfolio showcasing projects in **Software Engineering, Artificial Intelligence, Machine Learning, Backend Development, Data Analytics, and Cloud Technologies**.
 
