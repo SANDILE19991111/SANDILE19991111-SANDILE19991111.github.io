@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type React from "react";
 import { useEffect, useRef, useState } from "react";
-import sandilePhoto from "@/assets/sandile.jpeg";
-import cvAsset from "@/assets/cv.pdf";
+import sandilePhoto from "@/assets/sandile.jpeg.asset.json";
+import cvAsset from "@/assets/cv.pdf.asset.json";
+
 export const Route = createFileRoute("/")({
   component: Portfolio,
   head: () => ({
@@ -101,6 +103,26 @@ const PROJECTS = [
     metrics: [["Roles", "5"], ["Auth", "JWT+bcrypt"], ["Tests", "15+"]],
     accent: "signal",
   },
+  {
+    tag: "Software Dev · DevSecOps",
+    name: "DevSecOps Pipeline",
+    sub: "Secure CI/CD with SAST, Secrets & Container Scans",
+    desc: "End-to-end GitHub Actions pipeline: lint → unit tests → SAST (CodeQL) → secret scanning (Gitleaks) → container image scan (Trivy) → signed deploy to Render. Fails builds on high-severity CVEs and enforces branch protection.",
+    stack: ["GitHub Actions", "CodeQL", "Trivy", "Gitleaks", "Docker"],
+    code: "https://github.com/SANDILE19991111",
+    metrics: [["Gates", "5"], ["Coverage", "SAST+SCA"], ["MTTR", "< 1 day"]],
+    accent: "cyber",
+  },
+  {
+    tag: "Software Dev · Full-Stack",
+    name: "TaskFlow API",
+    sub: "Production REST API — Auth, Rate-Limit, OpenAPI",
+    desc: "Typed Node/Express REST API with JWT auth, refresh rotation, per-route rate limiting, Zod validation, PostgreSQL migrations, Swagger/OpenAPI docs, and Jest integration tests. Built to demonstrate clean, testable, production-grade backend engineering.",
+    stack: ["TypeScript", "Express", "PostgreSQL", "Zod", "Jest", "OpenAPI"],
+    code: "https://github.com/SANDILE19991111",
+    metrics: [["Endpoints", "20+"], ["Tests", "Jest"], ["Docs", "OpenAPI"]],
+    accent: "signal",
+  },
 ];
 
 const SKILLS = {
@@ -157,6 +179,17 @@ function Portfolio() {
 
 /* ────────────── Sections ────────────── */
 
+function scrollToHash(hash: string) {
+  return (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const id = hash.replace(/^#/, "");
+    const el = document.getElementById(id);
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", `#${id}`);
+  };
+}
+
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -168,16 +201,16 @@ function Nav() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? "backdrop-blur-xl bg-background/70 border-b border-border" : "bg-transparent"}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#top" className="flex items-center gap-2 font-mono text-sm">
+        <a href="#top" onClick={scrollToHash("#top")} className="flex items-center gap-2 font-mono text-sm cursor-pointer">
           <span className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground font-bold">SK</span>
           <span className="hidden sm:inline text-muted-foreground">~/sandile.khoza <span className="cursor" /></span>
         </a>
         <nav className="hidden md:flex items-center gap-8 font-mono text-sm text-muted-foreground">
           {links.map(([id, label]) => (
-            <a key={id} href={`#${id}`} className="hover:text-primary transition-colors">./{label.toLowerCase()}</a>
+            <a key={id} href={`#${id}`} onClick={scrollToHash(`#${id}`)} className="hover:text-primary transition-colors cursor-pointer">./{label.toLowerCase()}</a>
           ))}
         </nav>
-        <a href={cvAsset} download className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90 transition-opacity">
+        <a href={cvAsset.url} download="Sandile_Khoza_CV.pdf" target="_blank" rel="noreferrer" className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90 transition-opacity">
           Download CV
         </a>
       </div>
@@ -188,7 +221,7 @@ function Nav() {
 function Hero({ typed }: { typed: string }) {
   return (
     <section id="top" className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
-      <div className="absolute inset-0 grid-overlay opacity-40" />
+      <div className="pointer-events-none absolute inset-0 grid-overlay opacity-40" />
       <div className="mx-auto grid max-w-7xl gap-12 px-6 pt-36 pb-24 lg:grid-cols-[1.2fr_0.8fr] lg:pt-44 lg:pb-32">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 font-mono text-xs text-primary">
@@ -217,13 +250,13 @@ function Hero({ typed }: { typed: string }) {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#projects" className="rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground glow-cyber hover:brightness-110 transition-all">
+            <a href="#projects" onClick={scrollToHash("#projects")} className="cursor-pointer rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground glow-cyber hover:brightness-110 transition-all">
               Explore Projects →
             </a>
-            <a href="#contact" className="rounded-md border border-border bg-card px-5 py-3 text-sm font-semibold hover:border-primary transition-colors">
+            <a href="#contact" onClick={scrollToHash("#contact")} className="cursor-pointer rounded-md border border-border bg-card px-5 py-3 text-sm font-semibold hover:border-primary transition-colors">
               Hire me
             </a>
-            <a href={cvAsset} download className="rounded-md border border-border bg-card px-5 py-3 text-sm font-semibold hover:border-accent transition-colors">
+            <a href={cvAsset.url} download="Sandile_Khoza_CV.pdf" target="_blank" rel="noreferrer" className="cursor-pointer rounded-md border border-border bg-card px-5 py-3 text-sm font-semibold hover:border-accent transition-colors">
               ⬇ CV (PDF)
             </a>
           </div>
@@ -243,7 +276,7 @@ function Hero({ typed }: { typed: string }) {
           <div className="relative float-slow">
             <div className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-primary via-accent to-primary opacity-70 blur" />
             <img
-              src={sandilePhoto}
+              src={sandilePhoto.url}
               alt="Portrait of Bongimusa Sandile Khoza"
               className="relative h-[420px] w-[320px] rounded-3xl object-cover border border-border shadow-[var(--shadow-signal)]"
               width={320} height={420}
@@ -447,7 +480,7 @@ function Contact() {
         <div className="rounded-xl border border-border bg-background p-6">
           <div className="font-mono text-xs text-primary">// quick_actions</div>
           <div className="mt-4 space-y-3">
-            <a href={cvAsset} download className="block w-full rounded-md bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground glow-cyber hover:brightness-110 transition-all">
+            <a href={cvAsset.url} download className="block w-full rounded-md bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground glow-cyber hover:brightness-110 transition-all">
               ⬇ Download Full CV (PDF)
             </a>
             <a href="mailto:bongimusa.khoza@outlook.com" className="block w-full rounded-md border border-border bg-card px-4 py-3 text-center text-sm font-semibold hover:border-accent transition-colors">
@@ -495,7 +528,7 @@ function Footer() {
         <div className="flex gap-4">
           <a href="https://github.com/SANDILE19991111" target="_blank" rel="noreferrer" className="hover:text-primary">github</a>
           <a href="https://linkedin.com/in/bongimusa-khoza-7661aa396" target="_blank" rel="noreferrer" className="hover:text-primary">linkedin</a>
-          <a href={cvAsset} download className="hover:text-primary">cv.pdf</a>
+          <a href={cvAsset.url} download className="hover:text-primary">cv.pdf</a>
         </div>
       </div>
     </footer>
@@ -503,132 +536,317 @@ function Footer() {
 }
 
 /* ────────────── Live animated background ──────────────
-   Three canvas layers running behind everything:
-   • Matrix-style code rain (data streams)
-   • Rotating network topology (nodes + links)
-   • Scrolling code snippets ghosted on the side
+   Perf-optimized:
+   • Respects prefers-reduced-motion (renders a single static gradient)
+   • Detects low-end / mobile devices and downsizes work
+   • DPR capped, canvases sized with CSS + backing store
+   • Pauses when tab hidden (visibilitychange)
+   • Frame-rate throttled (~30fps mobile / 45fps desktop)
+   • No shadowBlur (major GPU cost) — uses radial gradients / additive fills instead
+   • `contain: strict` + will-change hints prevent layout jank on the page
 */
+
+type Perf = { reduced: boolean; low: boolean; dpr: number; fps: number };
+
+/* ── Debug perf bus ─────────────────────────────
+   Each animated canvas reports per-frame render time + drops here.
+   PerfPanel subscribes and renders when debug mode is on
+   (URL contains ?debug=perf, or localStorage.bgDebug === "1"). */
+type LayerStats = { fps: number; render: number; drops: number; frames: number };
+type PerfSnapshot = Record<string, LayerStats>;
+const perfBus = {
+  raw: {} as Record<string, { times: number[]; renders: number[]; drops: number; frames: number }>,
+  report(layer: string, renderMs: number, dropped: boolean) {
+    const s = (this.raw[layer] ||= { times: [], renders: [], drops: 0, frames: 0 });
+    const now = performance.now();
+    s.times.push(now);
+    s.renders.push(renderMs);
+    s.frames++;
+    if (dropped) s.drops++;
+    while (s.times.length > 0 && now - s.times[0] > 1000) {
+      s.times.shift();
+      s.renders.shift();
+    }
+  },
+  snapshot(): PerfSnapshot {
+    const out: PerfSnapshot = {};
+    for (const [k, s] of Object.entries(this.raw)) {
+      const avg = s.renders.length ? s.renders.reduce((a, b) => a + b, 0) / s.renders.length : 0;
+      out[k] = { fps: s.times.length, render: avg, drops: s.drops, frames: s.frames };
+    }
+    return out;
+  },
+};
+
+function useDebugMode() {
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const check = () => {
+      const url = new URLSearchParams(window.location.search);
+      setOn(url.get("debug") === "perf" || window.localStorage.getItem("bgDebug") === "1");
+    };
+    check();
+    window.addEventListener("storage", check);
+    return () => window.removeEventListener("storage", check);
+  }, []);
+  return on;
+}
+
+function usePerfProfile(): Perf {
+  const [p, setP] = useState<Perf>({ reduced: false, low: false, dpr: 1, fps: 45 });
+  useEffect(() => {
+    const mqReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const cores = (navigator.hardwareConcurrency ?? 4);
+    // deviceMemory is Chromium-only, safe fallback
+    const mem = (navigator as unknown as { deviceMemory?: number }).deviceMemory ?? 4;
+    const small = window.innerWidth < 900;
+    const low = small || cores <= 4 || mem <= 4;
+    const dpr = Math.min(window.devicePixelRatio || 1, low ? 1 : 1.5);
+    setP({ reduced: mqReduced.matches, low, dpr, fps: low ? 30 : 45 });
+    const on = () => setP((s) => ({ ...s, reduced: mqReduced.matches }));
+    mqReduced.addEventListener("change", on);
+    return () => mqReduced.removeEventListener("change", on);
+  }, []);
+  return p;
+}
+
 function LiveBackground() {
+  const perf = usePerfProfile();
+  const debug = useDebugMode();
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 30% 20%, oklch(0.22 0.06 250 / 0.6), transparent 60%), radial-gradient(ellipse at 80% 80%, oklch(0.2 0.08 155 / 0.35), transparent 60%)" }} />
-      <CodeRainCanvas />
-      <NetworkCanvas />
-      <CodeStreamOverlay />
+    <div
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      style={{ contain: "strict" }}
+      aria-hidden="true"
+    >
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at 30% 20%, oklch(0.22 0.06 250 / 0.6), transparent 60%), radial-gradient(ellipse at 80% 80%, oklch(0.2 0.08 155 / 0.35), transparent 60%)",
+        }}
+      />
+      {!perf.reduced && (
+        <>
+          {!perf.low && <CodeRainCanvas perf={perf} />}
+          <NetworkCanvas perf={perf} />
+          {!perf.low && <CodeStreamOverlay />}
+        </>
+      )}
       <div className="absolute inset-0 bg-background/55" />
-      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 0%, oklch(0.15 0.02 250 / 0.4) 40%, oklch(0.15 0.02 250 / 0.85) 100%)" }} />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, transparent 0%, oklch(0.15 0.02 250 / 0.4) 40%, oklch(0.15 0.02 250 / 0.85) 100%)",
+        }}
+      />
+      {debug && <PerfPanel perf={perf} />}
     </div>
   );
 }
 
-function CodeRainCanvas() {
+function PerfPanel({ perf }: { perf: Perf }) {
+  const [snap, setSnap] = useState<PerfSnapshot>({});
+  useEffect(() => {
+    const id = window.setInterval(() => setSnap(perfBus.snapshot()), 500);
+    return () => window.clearInterval(id);
+  }, []);
+  const layers = Object.entries(snap);
+  const budget = 1000 / perf.fps;
+  return (
+    <div
+      className="pointer-events-auto fixed bottom-3 right-3 z-50 min-w-[240px] rounded-md border border-primary/40 bg-background/90 p-3 font-mono text-[11px] text-primary shadow-lg backdrop-blur"
+      style={{ contain: "content" }}
+    >
+      <div className="mb-2 flex items-center justify-between gap-2 border-b border-primary/20 pb-1">
+        <span className="font-semibold">bg.debug</span>
+        <span className="text-muted-foreground">
+          {perf.reduced ? "reduced" : perf.low ? "low" : "hi"} · dpr{perf.dpr} · {perf.fps}fps
+        </span>
+      </div>
+      {layers.length === 0 && <div className="text-muted-foreground">waiting for frames…</div>}
+      {layers.map(([name, s]) => {
+        const over = s.render > budget;
+        return (
+          <div key={name} className="py-0.5">
+            <span className="text-accent">{name}</span>{" "}
+            <span className={over ? "text-destructive" : "text-foreground"}>
+              {s.fps.toString().padStart(2, " ")}fps · {s.render.toFixed(2)}ms · drops {s.drops} · f{s.frames}
+            </span>
+          </div>
+        );
+      })}
+      <div className="mt-2 text-[10px] text-muted-foreground">
+        toggle: localStorage.bgDebug = "1" · ?debug=perf
+      </div>
+    </div>
+  );
+}
+
+function CodeRainCanvas({ perf }: { perf: Perf }) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
     let W = 0, H = 0, cols = 0, drops: number[] = [];
-    const FS = 14;
-    const CHARS = "01アイウエオカサタナ{}[]<>()=>const let async await fn import export class if else return try catch=>=>0xF7A2 SELECT WHERE JOIN 200 OK 401 403 500".split("");
+    const FS = 16;
+    const CHARS = "01アイウエオカサタ{}[]<>=const let async fn 200 401 500 SELECT JOIN".split("");
     const resize = () => {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-      cols = Math.floor(W / FS);
+      const cssW = window.innerWidth;
+      const cssH = window.innerHeight;
+      W = cssW; H = cssH;
+      canvas.style.width = cssW + "px";
+      canvas.style.height = cssH + "px";
+      canvas.width = Math.floor(cssW * perf.dpr);
+      canvas.height = Math.floor(cssH * perf.dpr);
+      ctx.setTransform(perf.dpr, 0, 0, perf.dpr, 0, 0);
+      cols = Math.ceil(W / FS);
       drops = Array.from({ length: cols }, () => Math.random() * -H / FS);
     };
     resize();
-    let t: number | undefined;
-    const onResize = () => { clearTimeout(t); t = window.setTimeout(resize, 150); };
+    let rt: number | undefined;
+    const onResize = () => { clearTimeout(rt); rt = window.setTimeout(resize, 200); };
     window.addEventListener("resize", onResize);
+
     let raf = 0;
-    const draw = () => {
-      ctx.fillStyle = "oklch(0.15 0.02 250 / 0.08)";
+    let last = 0;
+    const frameMs = 1000 / perf.fps;
+    let running = !document.hidden;
+    const onVis = () => {
+      running = !document.hidden;
+      if (running) { last = 0; raf = requestAnimationFrame(draw); }
+      else cancelAnimationFrame(raf);
+    };
+    document.addEventListener("visibilitychange", onVis);
+
+    const draw = (now = 0) => {
+      if (!running) return;
+      if (now - last < frameMs) { raf = requestAnimationFrame(draw); return; }
+      const dropped = last !== 0 && now - last > frameMs * 2;
+      last = now;
+      const t0 = performance.now();
+      ctx.fillStyle = "oklch(0.15 0.02 250 / 0.1)";
       ctx.fillRect(0, 0, W, H);
       ctx.font = `${FS}px JetBrains Mono, monospace`;
+      ctx.fillStyle = "oklch(0.82 0.18 155 / 0.85)";
       for (let i = 0; i < drops.length; i++) {
         const y = drops[i] * FS;
-        const ch = CHARS[Math.floor(Math.random() * CHARS.length)];
-        ctx.fillStyle = "oklch(0.82 0.18 155 / 0.85)";
+        const ch = CHARS[(Math.random() * CHARS.length) | 0];
         ctx.fillText(ch, i * FS, y);
-        ctx.fillStyle = "oklch(0.72 0.18 220 / 0.2)";
-        ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], i * FS, y - FS);
         if (y > H && Math.random() > 0.975) drops[i] = Math.random() * -20;
-        drops[i] += 0.5;
+        drops[i] += 0.6;
       }
+      perfBus.report("rain", performance.now() - t0, dropped);
       raf = requestAnimationFrame(draw);
     };
-    draw();
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); clearTimeout(t); };
-  }, []);
-  return <canvas ref={ref} className="absolute inset-0 h-full w-full opacity-25" />;
+    raf = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", onVis);
+      clearTimeout(rt);
+    };
+  }, [perf.dpr, perf.fps]);
+  return <canvas ref={ref} className="absolute inset-0 opacity-20" style={{ willChange: "contents" }} />;
 }
 
-function NetworkCanvas() {
+function NetworkCanvas({ perf }: { perf: Perf }) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
     let W = 0, H = 0;
-    type Node = { x: number; y: number; vx: number; vy: number; r: number; kind: "router" | "server" | "client" };
+    type Node = { x: number; y: number; vx: number; vy: number; r: number; c: string };
     let nodes: Node[] = [];
     type Pkt = { from: number; to: number; t: number; speed: number; color: string };
     let pkts: Pkt[] = [];
+    const palette = ["oklch(0.82 0.18 155)", "oklch(0.72 0.18 220)", "oklch(0.75 0.19 55)"];
     const resize = () => {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-      const count = Math.min(28, Math.floor((W * H) / 55000));
+      const cssW = window.innerWidth;
+      const cssH = window.innerHeight;
+      W = cssW; H = cssH;
+      canvas.style.width = cssW + "px";
+      canvas.style.height = cssH + "px";
+      canvas.width = Math.floor(cssW * perf.dpr);
+      canvas.height = Math.floor(cssH * perf.dpr);
+      ctx.setTransform(perf.dpr, 0, 0, perf.dpr, 0, 0);
+      const cap = perf.low ? 14 : 26;
+      const count = Math.min(cap, Math.floor((W * H) / (perf.low ? 90000 : 60000)));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * W,
         y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.15,
-        vy: (Math.random() - 0.5) * 0.15,
-        r: 2 + Math.random() * 2.5,
-        kind: (["router", "server", "client"] as const)[Math.floor(Math.random() * 3)],
+        vx: (Math.random() - 0.5) * 0.12,
+        vy: (Math.random() - 0.5) * 0.12,
+        r: 2 + Math.random() * 2,
+        c: palette[(Math.random() * palette.length) | 0],
       }));
       pkts = [];
     };
     resize();
-    let t: number | undefined;
-    const onResize = () => { clearTimeout(t); t = window.setTimeout(resize, 150); };
+    let rt: number | undefined;
+    const onResize = () => { clearTimeout(rt); rt = window.setTimeout(resize, 200); };
     window.addEventListener("resize", onResize);
-    const LINK_DIST = 180;
+
+    const LINK_DIST = perf.low ? 140 : 180;
+    const MAX_PKTS = perf.low ? 8 : 16;
     let raf = 0;
-    const spawnPkt = () => {
-      if (nodes.length < 2 || pkts.length > 18) return;
-      const from = Math.floor(Math.random() * nodes.length);
-      let to = Math.floor(Math.random() * nodes.length);
-      if (to === from) to = (to + 1) % nodes.length;
-      const dx = nodes[from].x - nodes[to].x, dy = nodes[from].y - nodes[to].y;
-      if (Math.hypot(dx, dy) > LINK_DIST * 1.4) return;
-      const colors = ["oklch(0.82 0.18 155)", "oklch(0.72 0.18 220)", "oklch(0.75 0.19 55)"];
-      pkts.push({ from, to, t: 0, speed: 0.008 + Math.random() * 0.012, color: colors[Math.floor(Math.random() * colors.length)] });
+    let last = 0;
+    const frameMs = 1000 / perf.fps;
+    let running = !document.hidden;
+    const onVis = () => {
+      running = !document.hidden;
+      if (running) { last = 0; raf = requestAnimationFrame(draw); }
+      else cancelAnimationFrame(raf);
     };
-    const draw = () => {
+    document.addEventListener("visibilitychange", onVis);
+
+    const spawnPkt = () => {
+      if (nodes.length < 2 || pkts.length >= MAX_PKTS) return;
+      const from = (Math.random() * nodes.length) | 0;
+      let to = (Math.random() * nodes.length) | 0;
+      if (to === from) to = (to + 1) % nodes.length;
+      const a = nodes[from], b = nodes[to];
+      const dx = a.x - b.x, dy = a.y - b.y;
+      if (dx * dx + dy * dy > (LINK_DIST * 1.4) * (LINK_DIST * 1.4)) return;
+      pkts.push({ from, to, t: 0, speed: 0.008 + Math.random() * 0.012, color: palette[(Math.random() * palette.length) | 0] });
+    };
+
+    const draw = (now = 0) => {
+      if (!running) return;
+      if (now - last < frameMs) { raf = requestAnimationFrame(draw); return; }
+      const dropped = last !== 0 && now - last > frameMs * 2;
+      last = now;
+      const t0 = performance.now();
       ctx.clearRect(0, 0, W, H);
-      // move nodes
       for (const n of nodes) {
         n.x += n.vx; n.y += n.vy;
         if (n.x < 0 || n.x > W) n.vx *= -1;
         if (n.y < 0 || n.y > H) n.vy *= -1;
       }
-      // links
+      // links — single beginPath batching
+      const linkLim = LINK_DIST * LINK_DIST;
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "oklch(0.72 0.18 220 / 0.16)";
+      ctx.beginPath();
       for (let i = 0; i < nodes.length; i++) {
+        const ni = nodes[i];
         for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-          const d = Math.hypot(dx, dy);
-          if (d < LINK_DIST) {
-            ctx.strokeStyle = `oklch(0.72 0.18 220 / ${0.18 * (1 - d / LINK_DIST)})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.stroke();
+          const nj = nodes[j];
+          const dx = ni.x - nj.x, dy = ni.y - nj.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < linkLim) {
+            ctx.moveTo(ni.x, ni.y);
+            ctx.lineTo(nj.x, nj.y);
           }
         }
       }
+      ctx.stroke();
       // packets
       for (const p of pkts) {
         p.t += p.speed;
@@ -637,29 +855,28 @@ function NetworkCanvas() {
         const x = a.x + (b.x - a.x) * p.t;
         const y = a.y + (b.y - a.y) * p.t;
         ctx.fillStyle = p.color;
-        ctx.shadowBlur = 12; ctx.shadowColor = p.color;
         ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI * 2); ctx.fill();
-        ctx.shadowBlur = 0;
       }
-      pkts = pkts.filter(p => p.t < 1);
-      if (Math.random() < 0.25) spawnPkt();
-      // nodes
+      pkts = pkts.filter((p) => p.t < 1);
+      if (Math.random() < 0.2) spawnPkt();
+      // nodes (no shadowBlur, cheap outer ring)
       for (const n of nodes) {
-        const color = n.kind === "router" ? "oklch(0.82 0.18 155)" : n.kind === "server" ? "oklch(0.72 0.18 220)" : "oklch(0.75 0.19 55)";
-        ctx.fillStyle = color;
-        ctx.shadowBlur = 8; ctx.shadowColor = color;
+        ctx.fillStyle = n.c;
         ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2); ctx.fill();
-        ctx.shadowBlur = 0;
-        ctx.strokeStyle = `${color.slice(0, -1)} / 0.4)`;
-        ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 4, 0, Math.PI * 2); ctx.stroke();
       }
+      perfBus.report("net", performance.now() - t0, dropped);
       raf = requestAnimationFrame(draw);
     };
-    draw();
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); clearTimeout(t); };
-  }, []);
-  return <canvas ref={ref} className="absolute inset-0 h-full w-full opacity-50" />;
+    raf = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", onVis);
+      clearTimeout(rt);
+    };
+  }, [perf.dpr, perf.fps, perf.low]);
+  return <canvas ref={ref} className="absolute inset-0 opacity-50" style={{ willChange: "contents" }} />;
 }
 
 function CodeStreamOverlay() {
@@ -681,14 +898,22 @@ function CodeStreamOverlay() {
   ];
   return (
     <div className="absolute inset-0 overflow-hidden font-mono text-[11px] leading-relaxed">
-      <div className="absolute left-0 top-0 h-[300%] w-full animate-[stream_45s_linear_infinite] space-y-3 px-6 text-primary/40">
+      <div
+        className="absolute left-0 top-0 h-[300%] w-full space-y-3 px-6 text-primary/40"
+        style={{
+          animation: "stream 60s linear infinite",
+          willChange: "transform",
+          transform: "translateZ(0)",
+        }}
+      >
         {[...snippets, ...snippets, ...snippets].map((s, i) => (
           <div key={i} className="whitespace-nowrap">
             <span className="text-accent/50">→</span> {s}
           </div>
         ))}
       </div>
-      <style>{`@keyframes stream { 0%{transform:translateY(0)} 100%{transform:translateY(-66%)} }`}</style>
+      <style>{`@keyframes stream { 0%{transform:translate3d(0,0,0)} 100%{transform:translate3d(0,-66%,0)} }`}</style>
     </div>
   );
 }
+
