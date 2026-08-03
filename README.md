@@ -10,11 +10,11 @@ Personal portfolio showcasing projects in **Software Engineering, Artificial Int
 
 I'm a **BSc Computer Science and Mathematics graduate** passionate about building intelligent software that solves real-world problems.
 
-My work focuses on combining **software engineering** with **artificial intelligence** and **data engineering** to create applications that don't just display information — they analyze data, automate decisions, and improve user experiences. From biometric identity verification using computer vision to AI-powered ticket routing, sentiment analysis, and secure backend systems, I enjoy designing solutions that bridge data, automation, and practical business needs.
+My work focuses on combining **software engineering** with **artificial intelligence** and **data engineering** to create applications that don't just display information they analyze data, automate decisions, and improve user experiences. From biometric identity verification using computer vision to AI-powered ticket routing, sentiment analysis, and secure backend systems, I enjoy designing solutions that bridge data, automation, and practical business needs.
 
 I'm currently expanding my AI and data engineering skills, building on my software engineering foundation to work more deeply with machine learning pipelines, data systems, and applied AI.
 
-Growing up in Bushbuckridge, Mpumalanga, where access to technology was limited, inspired my curiosity about computing and reinforced my belief that technology should create meaningful impact. Today, I enjoy taking ideas from concept to deployment — building scalable, user-focused applications using modern development tools and AI technologies.
+Growing up in Bushbuckridge, Mpumalanga, where access to technology was limited, inspired my curiosity about computing and reinforced my belief that technology should create meaningful impact. Today, I enjoy taking ideas from concept to deployment building scalable, user-focused applications using modern development tools and AI technologies.
 
 ---
 
