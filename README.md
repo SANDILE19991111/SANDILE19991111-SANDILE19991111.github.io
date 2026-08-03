@@ -164,10 +164,8 @@ AI chatbot promoting Blue Economy awareness.
 
 ---
 
-## Certifications
+## Certification
 
-* Azure AI Engineer Associate
-* Power BI Data Analyst Associate (Microsoft/NEMISA)
 * Full Stack Development — FNB App Academy
 * Google AI Essentials
 * IBM Python for Data Science, AI & Development
