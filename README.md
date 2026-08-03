@@ -1,6 +1,6 @@
-# Bongimusa Sandile Khoza Software Engineering & AI Portfolio
+# Bongimusa Sandile Khoza — Software Engineering & AI Portfolio
 
-Personal portfolio showcasing projects in **Software Engineering, Artificial Intelligence, Machine Learning, Backend Development, Data Analytics, and Cloud Technologies**.
+Personal portfolio showcasing projects in **Software Engineering, Artificial Intelligence, Machine Learning, Data Engineering, Backend Development, Data Analytics, and Cloud Technologies**.
 
 🌐 **Live Portfolio:** https://sandile.khozabongimusa4.workers.dev
 
@@ -10,9 +10,11 @@ Personal portfolio showcasing projects in **Software Engineering, Artificial Int
 
 I'm a **BSc Computer Science and Mathematics graduate** passionate about building intelligent software that solves real-world problems.
 
-My work focuses on combining **software engineering** with **artificial intelligence** to create applications that don't just display information—they analyze data, automate decisions, and improve user experiences. From biometric identity verification using computer vision to AI-powered ticket routing, sentiment analysis, and secure backend systems, I enjoy designing solutions that bridge data, automation, and practical business needs.
+My work focuses on combining **software engineering** with **artificial intelligence** and **data engineering** to create applications that don't just display information — they analyze data, automate decisions, and improve user experiences. From biometric identity verification using computer vision to AI-powered ticket routing, sentiment analysis, and secure backend systems, I enjoy designing solutions that bridge data, automation, and practical business needs.
 
-Growing up in Bushbuckridge, Mpumalanga, where access to technology was limited, inspired my curiosity about computing and reinforced my belief that technology should create meaningful impact. Today, I enjoy taking ideas from concept to deployment by building scalable, user-focused applications using modern development tools and AI technologies.
+I'm currently expanding my AI and data engineering skills, building on my software engineering foundation to work more deeply with machine learning pipelines, data systems, and applied AI.
+
+Growing up in Bushbuckridge, Mpumalanga, where access to technology was limited, inspired my curiosity about computing and reinforced my belief that technology should create meaningful impact. Today, I enjoy taking ideas from concept to deployment — building scalable, user-focused applications using modern development tools and AI technologies.
 
 ---
 
@@ -53,7 +55,7 @@ Growing up in Bushbuckridge, Mpumalanga, where access to technology was limited,
 * Gemini 2.5 Flash
 * Claude AI
 
-### Data Analytics
+### Data Engineering & Analytics
 
 * Pandas
 * NumPy
@@ -61,6 +63,7 @@ Growing up in Bushbuckridge, Mpumalanga, where access to technology was limited,
 * Matplotlib
 * Power BI
 * Microsoft Excel
+* PostgreSQL
 
 ### Cloud & DevOps
 
@@ -70,6 +73,7 @@ Growing up in Bushbuckridge, Mpumalanga, where access to technology was limited,
 * Streamlit Cloud
 * Cloudflare Workers
 * GitHub Pages
+* Microsoft Azure
 
 ### Networking & Infrastructure
 
@@ -162,6 +166,8 @@ AI chatbot promoting Blue Economy awareness.
 
 ## Certifications
 
+* Azure AI Engineer Associate
+* Power BI Data Analyst Associate (Microsoft/NEMISA)
 * Full Stack Development — FNB App Academy
 * Google AI Essentials
 * IBM Python for Data Science, AI & Development
@@ -169,6 +175,7 @@ AI chatbot promoting Blue Economy awareness.
 * IBM Generative AI: Prompt Engineering Basics
 * Google Cloud Introduction to Generative AI
 * AI For Everyone — DeepLearning.AI
+* Coursera AI Bootcamp
 
 ---
 
